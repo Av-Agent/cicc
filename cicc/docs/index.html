@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CICC: Conformal Intent Classification and Clarification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐔</text></svg>">
+  </head>
+  <body>
+    <div class="col-lg-6 mx-auto p-4 py-md-5">
+      <header class="pb-3 mb-5 border-bottom">
+        <div class="row mb-3 text-center">
+          <h1>
+            🐔 CICC: Conformal Intent Classification and Clarification 🐔
+          </h1>
+        </div>
+        <div class="row mb-3 text-center">
+          <h5>
+            <a href="https://2024.naacl.org/" target="_blank">NAACL 2024</a>
+          </h5>
+        <div class="row mb-3 text-center">
+          <div class="col">
+            <div class="text-center">
+              <a href="http://florisdh.nl/" target="_blank">
+                Floris den Hengst
+              </a>
+            </div>
+            <div class="text-center">
+              Vrije Universiteit Amsterdam
+            </div>
+          </div>
+          <div  class="col">
+            <div class="text-center">
+              Ralf Wolter
+            </div>
+            <div class="text-center">
+              ING Bank
+            </div>
+          </div>
+          <div class="col">
+            <div class="text-center">
+              <a href="https://www.paltmeyer.com/" target="_blank">
+                Patrick Altmeyer
+              </a>
+            </div>
+            <div class="text-center">
+              TU Delft
+            </div>
+          </div class="col">
+          <div class="col">
+            <div class="text-center">
+              <a href="https://www.linkedin.com/in/akaygan/" target="_blank">
+                Arda Kaygan
+              </a>
+            </div>
+            <div class="text-center">
+              ING Bank
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <ul class="nav nav-pills nav-justified col-lg-4">
+            <li class="nav-item">
+                <a href="https://arxiv.org/abs/2403.18973" target="_blank">
+                  <h3>
+                    <i class="bi bi-file-earmark"></i>
+                  </h3>
+                  Paper
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/florisdenhengst/cicc" target="_blank">
+                <h3>
+                  <i class="bi bi-github"></i>
+                </h3>
+                Code
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                  href="https://drive.google.com/file/d/1r6nt3P2PRyQS3PseBMXsiiPWJI5krnwV/view?usp=sharing"
+                  target="_blank">
+                <h3>
+                  <i class="bi bi-easel"></i>
+                </h3>
+                Poster
+              </a>
+            </li>
+            <!-- TODO FdH: link to bibtex file
+            <li class="nav-item">
+              <a href="bibtex" target="_blank">
+                <h3>
+                  <i class="bi bi-chat-square-quote"></i>
+                </h3>
+                BibTex
+              </a>
+            </li>-->
+          </ul>
+        </div>
+      </header>
+      <main>
+        <div class="row justify-content">
+          <iframe src="https://archive.org/embed/cicc_20240519" width="640" height="480"
+              frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true"
+              allowfullscreen></iframe>
+        </div>
+        <h3>
+          Abstract
+        </h3>
+        <p>
+          We present <em>Conformal Intent Classification and Clarification (CICC)</em>, a framework for fast and accurate intent classification for task-oriented dialogue systems. The framework turns heuristic uncertainty scores of any intent classifier into a clarification question that is guaranteed to contain the true intent at a pre-defined confidence level.
+By disambiguating between a small number of likely intents, the user query can be resolved quickly and accurately. Additionally, we propose to augment the framework for out-of-scope detection.
+In a comparative evaluation using seven intent recognition datasets we find that CICC generates small clarification questions and is capable of out-of-scope detection.
+CICC can help practitioners and researchers substantially in improving the user experience of dialogue agents with specific clarification questions.
+        </p>
+        <blockquote class="blockquote">
+          We tackle the problem of interactively classifying user intents in task-oriented dialogue
+        </blockquote>
+        <div class="row justify-content-md-center">
+          <img src="flowdiagram3.png" alt="flow diagram of CICC algorithm" style="max-width:600px;">
+        </div>
+        <h3>
+          Background
+        </h3>
+        <p>
+          Intent classification (IC) is a crucial step in the selection of actions and responses in task-oriented dialogue systems. To offer the best possible experience with such systems, IC should accurately map user inputs to a predefined set of intents. A widely known challenge of language in general, and IC specifically, is that user utterances may be incomplete, erroneous, and contain linguistic ambiguities.
+        </p>
+        <p>
+          Intent classification is typically tackled using (pre-trained) language models that are fine-tuned for classification on a data set collected in the wild.
+          These classifiers output some score for each known intent. This score can be turned into a classification probability with a softmax layer.
+        </p>
+        <h3>
+          Problem
+        </h3>
+        <p>
+          In task-oriented dialogue systems, we need to handle the probabilistic output of an intent classifier.
+          Continuing the conversation under the assumption that the class with the highest predicted probability is the true user intent is overly simplistic and will
+          result in a poor user experience.
+        </p>
+        <p>
+          For example, if the two highest intents have predicted probabilities of 0.49 and 0.48,
+          it is more reasonable to ask which is the true user intent in a <em>clarification question</em> rather than blindly assuming the most probable intent is the true user intent and continuing the conversation.
+          Conversely, if the classifier predicts an almost equal probability for e.g. 15 intents, then it both is unreasonable to assume that the most probable intent is the true user intent whereas a clarification question
+          to disambiguate between all fifteen intents would be tedious and burdensome on the user.
+        </p>
+        <p>
+          CICC formalizes <em>when</em> to ask a clarification and <em>how</em> to ask it, ensuring that:
+          <ul>
+            <li>the true user intent is detected at a pre-specified confidence level</li>
+            <li>that no questions are asked if the model is uncertain</li>
+            <li>any probabilistic intent classifier can be used without re-training</li>
+          </ul>
+      </p>
+
+
+        <h3>CICC: Conformal Intent Classification and Clarification</h3>
+        <p>
+          CICC solves the problem of interactively classifying user intents in three simple steps:
+          <ol>
+            <li>obtain classification scores using an intent classifier</li>
+            <li>turn the classification scores into a set of intents that contains the true user intent at a predefined confidence level of \(1-\alpha\) say 95% with conformal prediction</li>
+            <li>use the intent set to choose between</li>
+            <ul>
+              <li>continuing the conversation if the set contains only 1 item</li>
+              <li>asking the user to disambiguate between the items if the set is smaller than a predefined threshold \(th\) of e.g. 7 items</li>
+              <li>asking the user to reformulate if the set is of a larger size</li>
+            </ul>
+          </ol>
+          Because conformal prediction gives us a guarantee that the intent set contains the true user intent at a typically high confidence level, we ensure that we only continue the conversation when we have captured the true user intent.
+        </p>
+        <P>
+          Additionally, the clarification questions are typically small i.e. much smaller than the predefined threshold.
+        </P>
+
+        <h3>Parameters</h3>
+        <p>
+        CICC comes with two hyperparameters. These have intuitive interpretations and can easily be set on the calibration set.
+          <dl>
+            <dt>Confidence level \(\alpha\)</dt>
+            <dd>This parameter controls how certain we want to be that the true user intent is in the predicted set of intents in step (2) of the algorithm described above. For example, for a value of \(\alpha=0.05\) we are guaranteed that the predicted intent set contains the true user intent in \(1-\alpha=0.95%\) of test inputs.
+              Implicitly, this parameter controls the size of the prediction set: for a low alpha, we generally expect larger prediction sets. The parameter can be set depending on the performance of the intent classifier and the use case requirements. For example, if the intent classifier obtains an accuracy of 90% on the train set, it can easily be set at \(1-0.99=0.01\).
+            </dd>
+            <dt>Max prediction set size \(th\)</dt>
+            <dd>
+              This parameter controls when we consider the prediction set too large to ask a clarification question. For example, if we obtain a prediction set with twenty possible intents for a certain user input and the threshold \(th=7\), we reject this input as too ambiguous to clarify using a clarification question. Instead we ask the user to reformulate the query entirely.
+              This parameter can be set based on interaction design knowledge and knowledge of the user base. We generally advize to set this parameter no higher than 7 to avoid overly long clarification questions.
+            </dd>
+          </dl>
+        </p>
+
+        <h3>
+          Model, Data and Computational Requirements
+        </h3>
+        <p>
+          The requirements of CICC are easily fulfilled in a dialogue agent setting.
+        </p>
+        <p>
+          CICC relies on an intent detection model or classifier that maps user input to a vector in \(\mathbb{R}^K\) for a dialogue agent that supports \(K\) intents.
+          So, any model that implements e.g. scikit-learn's <code>predict_proba()</code>, including the (softmax) output of a neural network classifier would work.
+        </p>
+        <p>
+          Additionally, CICC requires a relatively small calibration data set. This calibration set should formally be exchangable with the test data, i.e. it should identically but not necessarily independently distributed as the test data.
+          In practice, such a data set can simply be obtained by collecting and labelling actual user inputs. This data set need not be large, but should ideally include some examples from all \(k \in K\) intents or classes.
+        </p>
+        <p>
+          The computational requirements for CICC are very limited. Calibration on the calibration set can generally be done in seconds and the conversion of classification scores to prediction sets imposes a very limited computational burden as it only requires the inclusion of intents based on a preset threshold. These operations can easily be vectorized to support dialogue agents with up to thousands of intents.
+        </p>
+        <div class="row justify-content-md-center">
+          <img src="CICC-diagram.svg" alt="components of CICC" style="max-width:90%;">
+        </div>
+        <h3>Further Reading</h3>
+        <p>
+          A key technology driving CICC is conformal prediction. Although CICC supports other types of conformal prediction, we particularly point to the usage of split-conformal prediction.
+          Some references about (split) conformal prediction:
+          <ul>
+            <li>Vovk, Vladimir, Alexander Gammerman, and Glenn Shafer. <a href="https://alrw.net/" target="_blank">Algorithmic learning in a random world</a>. Vol. 29. New York: Springer, 2005.</li>
+            <li>Angelopoulos, Anastasios N., and Stephen Bates. <a href="https://www.nowpublishers.com/article/Details/MAL-101" target="_blank">Conformal prediction: A gentle introduction.</a> Foundations and Trends® in Machine Learning 16.4 (2023): 494-591.</li>
+          </ul>
+        </p>
+        <!-- <h3>Citation</h3>
+        <pre>
+
+        </pre> -->
+
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
